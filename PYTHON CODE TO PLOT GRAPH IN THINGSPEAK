@@ -1,0 +1,16 @@
+import httplib, urllib
+
+def sensorUpload(temp,field):
+    params = urllib.urlencode({field: temp,'key':'BOAWS6JBLR8SE471'})
+    headers = {"Content-typZZe": "application/x-www-form-urlencoded","Accept": "text/plain"}
+    conn = httplib.HTTPConnection("api.thingspeak.com:80")
+    try:
+        conn.request("POST", "/update", params, headers)
+        response = conn.getresponse()
+        #print (temp)
+        print (response.status, response.reason)
+        data = response.read()
+        conn.close()
+    except:
+        print ("Connection Failed")
+        
