@@ -1,0 +1,14 @@
+import serial
+import ts
+import time
+ser=serial.Serial('COM4',9600,timeout=0.5)
+while True:
+    response=ser.readline()
+    if(response.startswith('#')):
+        a=response.split('+')[0][1:]
+       
+        ts.sensorUpload(int(a),'field1')
+        time.sleep(2)
+    ## ts.sensorUpload(int(b)),'field2')
+        ##time.sleep(2)
+        
